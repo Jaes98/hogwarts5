@@ -1,12 +1,13 @@
 package dk.kea.dat3js.hogwarts5.students;
 
 import dk.kea.dat3js.hogwarts5.house.House;
+import dk.kea.dat3js.hogwarts5.interfaces.PersonWithNames;
 import jakarta.persistence.*;
 
 import java.util.Objects;
 
 @Entity
-public class Student {
+public class Student implements PersonWithNames {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
@@ -45,7 +46,7 @@ public class Student {
   }
 
   public void setFirstName(String firstName) {
-    this.firstName = firstName;
+    this.firstName = capitalize(firstName);
   }
 
   public String getMiddleName() {
@@ -53,7 +54,7 @@ public class Student {
   }
 
   public void setMiddleName(String middleName) {
-    this.middleName = middleName;
+    this.middleName = capitalize(middleName);
   }
 
   public String getLastName() {
@@ -61,7 +62,7 @@ public class Student {
   }
 
   public void setLastName(String lastName) {
-    this.lastName = lastName;
+    this.lastName = capitalize(lastName);
   }
 
   public House getHouse() {
@@ -92,46 +93,4 @@ public class Student {
   public int hashCode() {
     return Objects.hash(getFirstName(), getMiddleName(), getLastName(), getHouse().getName());
   }
-
-  public String getFullName() {
-    return firstName + " " + (middleName != null ? middleName + " " : "") + lastName;
-  }
-
-  public void setFullName(String fullName) {
-    if (fullName == null) {
-      setFirstName(null);
-      setMiddleName(null);
-      setLastName(null);
-      return;
-    }
-
-    if(fullName.isEmpty()) {
-      setFirstName("");
-      setMiddleName(null);
-      setLastName(null);
-      return;
-    }
-
-    int firstSpace = fullName.indexOf(" ");
-    int lastSpace = fullName.lastIndexOf(" ");
-
-    if (firstSpace == -1) {
-      setFirstName(fullName);
-      setMiddleName(null);
-      setLastName(null);
-      return;
-    }
-
-    if (firstSpace == lastSpace) {
-      setFirstName(fullName.substring(0, firstSpace));
-      setMiddleName(null);
-      setLastName(fullName.substring(firstSpace + 1));
-      return;
-    }
-
-    setFirstName(fullName.substring(0, firstSpace));
-    setMiddleName(fullName.substring(firstSpace + 1, lastSpace));
-    setLastName(fullName.substring(lastSpace +1));
-  }
-
 }
