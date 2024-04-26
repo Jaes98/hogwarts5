@@ -82,6 +82,7 @@ public class TeacherService {
         teacherEntity.getFirstName(),
         teacherEntity.getMiddleName(),
         teacherEntity.getLastName(),
+        teacherEntity.getFullName(),
         teacherEntity.getHouse().getName(),
         teacherEntity.getMainSubject(),
         teacherEntity.getEmploymentDate()
@@ -101,9 +102,9 @@ public class TeacherService {
         teacherDTO.employmentDate()
     );
 
-//    if(teacherDTO.name() != null) {
-//      entity.setFullName(teacherDTO.name());
-//    }
+    if(teacherDTO.name() != null) {
+      entity.setFullName(teacherDTO.name());
+    }
 
     return entity;
   }

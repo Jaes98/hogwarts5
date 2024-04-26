@@ -36,6 +36,7 @@ public class Teacher implements PersonWithNames {
     this.employmentDate = employmentDate;
   }
 
+
   public int getId() {
     return id;
   }

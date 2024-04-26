@@ -45,13 +45,20 @@ public interface PersonWithNames {
         if (firstSpace == lastSpace) {
             setFirstName(fullName.substring(0, firstSpace));
             setMiddleName(null);
-            setLastName(fullName.substring(firstSpace + 1));
+            setLastName(capitalizeLastName(fullName.substring(firstSpace + 1)));
             return;
         }
 
         setFirstName(fullName.substring(0, firstSpace));
         setMiddleName(fullName.substring(firstSpace + 1, lastSpace));
-        setLastName(fullName.substring(lastSpace +1));
+        setLastName(capitalizeLastName(fullName.substring(lastSpace +1)));
+    }
+
+    default String capitalizeLastName(String lastName) {
+        if (lastName.startsWith("Mc")) {
+            return "Mc" + capitalize(lastName.substring(2));
+        }
+        return capitalize(lastName);
     }
 
     default String capitalize(String name) {
