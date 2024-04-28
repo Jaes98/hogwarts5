@@ -9,7 +9,7 @@ class StudentTest {
     @Test
     void getFullNameWithMiddleName() {
         //arrange
-        Student student = new Student("Harry", "James", "Potter", null, 1);
+        Student student = new Student("Harry", "James", "Potter", null, 1, false);
 
         //act
         String fullName = student.getFullName();
@@ -21,7 +21,7 @@ class StudentTest {
     @Test
     void getFullNameWithoutMiddleName() {
         //arrange
-        Student student = new Student("Cho", "Chang", null, 1);
+        Student student = new Student("Cho", "Chang", null, 1, false);
 
         //act
         String fullName = student.getFullName();
@@ -33,7 +33,7 @@ class StudentTest {
     @Test
     void setFullNameWithMiddleName() {
         // arrange
-        Student student = new Student("first", "middle", "last", null, 1);
+        Student student = new Student("first", "middle", "last", null, 1, false);
 
         // act
         student.setFullName("Ron Bilius Weasley");
@@ -47,7 +47,7 @@ class StudentTest {
     @Test
     void setFullNameWithoutMiddleName() {
         // arrange
-        Student student = new Student("first", "middle", "last", null, 1);
+        Student student = new Student("first", "middle", "last", null, 1, false);
 
         // act
         student.setFullName("Luna Lovegood");
@@ -61,7 +61,7 @@ class StudentTest {
     @Test
     void setFullNameWithoutLastName() {
         // arrange
-        Student student = new Student("first", "middle", "last", null, 1);
+        Student student = new Student("first", "middle", "last", null, 1, false);
 
         // act
         student.setFullName("Luna");
@@ -75,7 +75,7 @@ class StudentTest {
     @Test
     void setFullNameWithMultipleMiddleNames() {
         // arrange
-        Student student = new Student("first", "middle", "last", null, 1);
+        Student student = new Student("first", "middle", "last", null, 1, false);
 
         // act
         student.setFullName("Luna Xenophilius Godesen Lovegood");
@@ -89,7 +89,7 @@ class StudentTest {
     @Test
     void setFullNameWithEmptyString() {
         // arrange
-        Student student = new Student("first", "middle", "last", null, 1);
+        Student student = new Student("first", "middle", "last", null, 1, false);
 
         // act
         student.setFullName("");
@@ -103,7 +103,7 @@ class StudentTest {
     @Test
     void setFullNameWithNull() {
         // arrange
-        Student student = new Student("first", "middle", "last", null, 1);
+        Student student = new Student("first", "middle", "last", null, 1, false);
 
         // act
         student.setFullName(null);
@@ -117,7 +117,7 @@ class StudentTest {
     @Test
     void CapitalizeIndividualNames() {
         // arrange
-        Student student = new Student("harry", "james", "potter", null, 1);
+        Student student = new Student("harry", "james", "potter", null, 1, false);
 
         // act
         student.capitalize(student.getFullName());
@@ -131,7 +131,7 @@ class StudentTest {
     @Test
     void capitalizeIndividualNamesWithCrazyCapitalization() {
         // arrange
-        Student student = new Student("hArRy", "jaMes", "pOtTeR", null, 1);
+        Student student = new Student("hArRy", "jaMes", "pOtTeR", null, 1, false);
 
         // act
         student.capitalize(student.getFullName());

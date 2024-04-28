@@ -3,9 +3,13 @@ package dk.kea.dat3js.hogwarts5.students;
 import dk.kea.dat3js.hogwarts5.house.House;
 import dk.kea.dat3js.hogwarts5.interfaces.PersonWithNames;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Objects;
 
+@Getter
+@Setter
 @Entity
 public class Student implements PersonWithNames {
   @Id
@@ -17,20 +21,22 @@ public class Student implements PersonWithNames {
   @ManyToOne
   private House house;
   private Integer schoolYear; // 1-7
+  private boolean isPrefect;
 
   public Student() {
   }
 
-  public Student(String firstName, String lastName, House house, int schoolYear) {
-    this(firstName, null, lastName, house, schoolYear);
+  public Student(String firstName, String lastName, House house, int schoolYear, boolean isPrefect) {
+    this(firstName, null, lastName, house, schoolYear, isPrefect);
   }
 
-  public Student(String firstName, String middleName, String lastName, House house, int schoolYear) {
+  public Student(String firstName, String middleName, String lastName, House house, int schoolYear, boolean isPrefect) {
     this.firstName = firstName;
     this.middleName = middleName;
     this.lastName = lastName;
     this.house = house;
     this.schoolYear = schoolYear;
+    this.isPrefect = isPrefect;
   }
 
   public int getId() {

@@ -71,7 +71,7 @@ public class StudentService {
     return existingStudent;
   }
 
-  private StudentResponseDTO toDTO(Student studentEntity) {
+  public StudentResponseDTO toDTO(Student studentEntity) {
     StudentResponseDTO dto = new StudentResponseDTO(
         studentEntity.getId(),
         studentEntity.getFirstName(),
@@ -91,7 +91,8 @@ public class StudentService {
         studentDTO.middleName(),
         studentDTO.lastName(),
         houseService.findById(studentDTO.house()).orElseThrow(),
-        studentDTO.schoolYear()
+        studentDTO.schoolYear(),
+            studentDTO.prefect()
     );
 
     if(studentDTO.name() != null) {

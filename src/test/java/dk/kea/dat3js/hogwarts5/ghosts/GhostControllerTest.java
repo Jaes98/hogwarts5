@@ -1,6 +1,5 @@
 package dk.kea.dat3js.hogwarts5.ghosts;
 
-import dk.kea.dat3js.hogwarts5.house.House;
 import dk.kea.dat3js.hogwarts5.house.HouseRepository;
 import dk.kea.dat3js.hogwarts5.house.HouseService;
 import org.junit.jupiter.api.Test;
@@ -10,8 +9,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
 import org.springframework.test.web.servlet.MockMvc;
-
-import java.util.Optional;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.junit.jupiter.api.Assertions.*;
@@ -45,7 +42,6 @@ class GhostControllerTest {
 
     @Test
     void getAllGhosts() throws Exception {
-        when(houseRepository.findById("Gryffindor").thenReturn(Optional.of(new House("Gryffindor", "Godric Gryffindor", new String []{"red", "gold"}))),
         mockMvc.perform(get("/ghosts"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(4)))
