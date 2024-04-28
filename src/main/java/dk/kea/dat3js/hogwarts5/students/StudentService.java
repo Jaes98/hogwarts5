@@ -92,7 +92,7 @@ public class StudentService {
         studentDTO.lastName(),
         houseService.findById(studentDTO.house()).orElseThrow(),
         studentDTO.schoolYear(),
-            studentDTO.prefect()
+            studentDTO.isPrefect()
     );
 
     if(studentDTO.name() != null) {

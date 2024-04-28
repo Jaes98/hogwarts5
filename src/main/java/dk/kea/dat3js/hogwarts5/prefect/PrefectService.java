@@ -37,23 +37,34 @@ public class PrefectService {
         }
     }
 
-    public void addPrefect(int id) {
+    public void appointPrefect(int id) {
         Optional<Student> student = studentRepository.findById(id);
-        student.ifPresent(s -> {
-            s.setIsPrefect(true);
-            studentRepository.save(s);
-        });
+        if (student.isPresent()) {
+            Student studentToUpdate = student.get();
+            if (!studentToUpdate.getIsPrefect()) {
+                studentToUpdate.setIsPrefect(true);
+                studentRepository.save(studentToUpdate);
+            } System.out.println("Student is already a prefect");
+        } else {
+            System.out.println("Student not found");
+        }
+
     }
 
-    public List<Student> getAllPrefectsInHouse(String house) {
-        return studentRepository.findAllByIsPrefectTrueAndHouseName(house);
+    public List<StudentResponseDTO> getPrefectsByHouse(String house) {
+        return studentRepository.findAllByHouseNameAndPrefectIsTrue(house).stream().map(studentService::toDTO).toList();
     }
 
     public void removePrefect(int id) {
         Optional<Student> student = studentRepository.findById(id);
-        student.ifPresent(s -> {
-            s.setIsPrefect(false);
-            studentRepository.save(s);
-        });
+        if (student.isPresent()) {
+            Student studentToUpdate = student.get();
+            if (studentToUpdate.getIsPrefect()) {
+                studentToUpdate.setIsPrefect(false);
+                studentRepository.save(studentToUpdate);
+            } System.out.println("Student is not a prefect");
+        } else {
+            System.out.println("Student not found");
+        }
     }
 }

@@ -21,7 +21,7 @@ public class Student implements PersonWithNames {
   @ManyToOne
   private House house;
   private Integer schoolYear; // 1-7
-  private boolean isPrefect;
+  private Boolean isPrefect;
 
   public Student() {
   }

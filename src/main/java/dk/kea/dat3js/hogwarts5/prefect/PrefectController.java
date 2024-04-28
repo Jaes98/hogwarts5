@@ -31,13 +31,13 @@ public class PrefectController {
     }
 
     @GetMapping("/house/{house}")
-    public List<Student> getAllPrefectsInHouse(@PathVariable String house) {
-        return prefectService.getAllPrefectsInHouse(house);
+    public List<StudentResponseDTO> getPrefectsByHouse(@PathVariable String house){
+        return prefectService.getPrefectsByHouse(house);
     }
 
     @PostMapping("/{id}")
-    public void addPrefect(@PathVariable int id) {
-        prefectService.addPrefect(id);
+    public void appointPrefect(@PathVariable int id) {
+        prefectService.appointPrefect(id);
     }
 
     @DeleteMapping("/{id}")
