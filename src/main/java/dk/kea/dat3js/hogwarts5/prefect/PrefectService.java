@@ -24,7 +24,7 @@ public class PrefectService {
 
 
     public List<StudentResponseDTO> getAllPrefects() {
-        return studentRepository.findAllByPrefectIsTrue().stream().map(studentService::toDTO).toList();
+        return studentRepository.findAllByIsPrefectIsTrue().stream().map(studentService::toDTO).toList();
     }
 
     public Optional<Student> getPrefectById(int id) {
@@ -52,7 +52,7 @@ public class PrefectService {
     }
 
     public List<StudentResponseDTO> getPrefectsByHouse(String house) {
-        return studentRepository.findAllByHouseNameAndPrefectIsTrue(house).stream().map(studentService::toDTO).toList();
+        return studentRepository.findAllByHouseNameAndIsPrefectIsTrue(house).stream().map(studentService::toDTO).toList();
     }
 
     public void removePrefect(int id) {
