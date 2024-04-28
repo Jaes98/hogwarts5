@@ -79,7 +79,9 @@ public class StudentService {
         studentEntity.getLastName(),
         studentEntity.getFullName(),
         studentEntity.getHouse().getName(),
-        studentEntity.getSchoolYear()
+        studentEntity.getSchoolYear(),
+            studentEntity.isPrefect(),
+            studentEntity.getGender()
     );
 
     return dto;
@@ -92,7 +94,8 @@ public class StudentService {
         studentDTO.lastName(),
         houseService.findById(studentDTO.house()).orElseThrow(),
         studentDTO.schoolYear(),
-            studentDTO.isPrefect()
+            studentDTO.prefect(),
+            studentDTO.gender()
     );
 
     if(studentDTO.name() != null) {
@@ -100,5 +103,26 @@ public class StudentService {
     }
 
     return entity;
+  }
+
+  public Optional<StudentResponseDTO> adjustPrefect(int id) {
+    Optional<Student> student = studentRepository.findById(id);
+    if (student.isPresent()) {
+      Student studentToUpdate = student.get();
+      List<Student> existingPrefects = studentRepository.findAllByHouseNameAndPrefectIsTrue(studentToUpdate.getHouse().getName());
+      if (!studentToUpdate.isPrefect() && existingPrefects.size() == 2 ) {
+        return Optional.empty();
+      } else if (!studentToUpdate.isPrefect() && existingPrefects.size() == 1) {
+        if (existingPrefects.getFirst().getGender().equals(studentToUpdate.getGender())) {
+          return Optional.empty();
+        }
+      } else if (studentToUpdate.getSchoolYear() < 5) {
+        return Optional.empty();
+      }
+      studentToUpdate.setPrefect(!studentToUpdate.isPrefect());
+      return Optional.of(toDTO(studentRepository.save(studentToUpdate)));
+    } else {
+      return Optional.empty();
+    }
   }
 }

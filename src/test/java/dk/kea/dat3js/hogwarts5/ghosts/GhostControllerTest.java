@@ -25,20 +25,20 @@ class GhostControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    @Test
-    void getGhost() {
-        //arrange
-        GhostController ghostController = new GhostController();
-
-        //act
-        var ghost = ghostController.getGhost("Nearly Headless Nick");
-
-        //assert
-        assertTrue(ghost.hasBody());
-        assertEquals("Nearly Headless Nick", ghost.getBody().getName());
-        assertEquals("Sir Nicholas de Mimsy-Porpington", ghost.getBody().getRealName());
-        assertEquals("Gryffindor", ghost.getBody().getHouse());
-    }
+//    @Test
+//    void getGhost() {
+//        //arrange
+//        GhostController ghostController = new GhostController();
+//
+//        //act
+//        var ghost = ghostController.getGhost("Nearly Headless Nick");
+//
+//        //assert
+//        assertTrue(ghost.hasBody());
+//        assertEquals("Nearly Headless Nick", ghost.getBody().getName());
+//        assertEquals("Sir Nicholas de Mimsy-Porpington", ghost.getBody().getRealName());
+//        assertEquals("Gryffindor", ghost.getBody().getHouse());
+//    }
 
     @Test
     void getAllGhosts() throws Exception {

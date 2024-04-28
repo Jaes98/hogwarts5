@@ -21,7 +21,7 @@ public class PrefectController {
     }
 
     @GetMapping
-    public List<StudentResponseDTO> getAllPrefects() {
+    public List<Student> getAllPrefects() {
         return prefectService.getAllPrefects();
     }
 

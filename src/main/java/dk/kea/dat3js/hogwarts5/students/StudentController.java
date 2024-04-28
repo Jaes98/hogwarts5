@@ -48,4 +48,9 @@ public class StudentController {
   public ResponseEntity<StudentResponseDTO> deleteStudent(@PathVariable int id) {
     return ResponseEntity.of(studentService.deleteById(id));
   }
+
+  @PatchMapping("/{id}/prefect")
+  public ResponseEntity<StudentResponseDTO> adjustPrefect(@PathVariable int id) {
+    return ResponseEntity.of(studentService.adjustPrefect(id));
+  }
 }
